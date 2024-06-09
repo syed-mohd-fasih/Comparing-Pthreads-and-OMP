@@ -66,9 +66,6 @@ sorting-algorithms-comparison/
 │   ├── cocktail_sort_omp.c
 │
 ├── README.md
-|
-└── report/
-    └── analysis.md
 ```
 
 ## Implementation Details
@@ -113,3 +110,4 @@ Repeat the process for other sorting algorithms by replacing `bubble_sort` with 
 ## Conclusion
 
 This project highlights the differences between Pthreads and OpenMP in terms of performance and ease of implementation for various sorting algorithms.
+This repository only contains the source code to the implementation of each sorting algorithm in Pthreads and OpenMP.
