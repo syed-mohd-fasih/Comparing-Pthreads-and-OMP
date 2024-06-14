@@ -8,11 +8,13 @@
 void merge(int arr[], int left, int mid, int right);
 void merge_sort(int arr[], int left, int right);
 
-int main() {
+int main()
+{
     int arr[SIZE];
     srand(time(NULL));
     printf("Original array: ");
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++)
+    {
         arr[i] = rand() % 100;
         printf("%d ", arr[i]);
     }
@@ -34,7 +36,8 @@ int main() {
     return 0;
 }
 
-void merge(int arr[], int left, int mid, int right) {
+void merge(int arr[], int left, int mid, int right)
+{
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -47,32 +50,40 @@ void merge(int arr[], int left, int mid, int right) {
 
     int i = 0, j = 0, k = left;
 
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
             arr[k] = L[i];
             i++;
-        } else {
+        }
+        else
+        {
             arr[k] = R[j];
             j++;
         }
         k++;
     }
 
-    while (i < n1) {
+    while (i < n1)
+    {
         arr[k] = L[i];
         i++;
         k++;
     }
 
-    while (j < n2) {
+    while (j < n2)
+    {
         arr[k] = R[j];
         j++;
         k++;
     }
 }
 
-void merge_sort(int arr[], int left, int right) {
-    if (left < right) {
+void merge_sort(int arr[], int left, int right)
+{
+    if (left < right)
+    {
         int mid1 = left + (right - left) / 4;
         int mid2 = left + (right - left) / 2;
         int mid3 = left + 3 * (right - left) / 4;
@@ -94,4 +105,3 @@ void merge_sort(int arr[], int left, int right) {
         merge(arr, left, mid2, right);
     }
 }
-
