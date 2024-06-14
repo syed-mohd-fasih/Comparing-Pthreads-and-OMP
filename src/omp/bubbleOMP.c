@@ -7,17 +7,14 @@
 
 int arr[SIZE];
 
-void generate_random_array(int arr[], int size)
-{
+void generate_random_array(int arr[], int size) {
     int i;
-    for (i = 0; i < size; i++)
-    {
-        arr[i] = rand() % 100;
+    for (i = 0; i < size; i++) {
+    	arr[i] = rand() % 100;
     }
 }
 
-void merge(int left, int mid, int right)
-{
+void merge(int left, int mid, int right) {
     int size1 = mid - left + 1;
     int size2 = right - mid;
 
@@ -32,45 +29,35 @@ void merge(int left, int mid, int right)
     i = 0;
     j = 0;
     k = left;
-    while (i < size1 && j < size2)
-    {
-        if (leftArr[i] <= rightArr[j])
-        {
+    while (i < size1 && j < size2) {
+        if (leftArr[i] <= rightArr[j]) {
             arr[k] = leftArr[i];
             i++;
-        }
-        else
-        {
+        } else {
             arr[k] = rightArr[j];
             j++;
         }
         k++;
     }
 
-    while (i < size1)
-    {
+    while (i < size1) {
         arr[k] = leftArr[i];
         i++;
         k++;
     }
 
-    while (j < size2)
-    {
+    while (j < size2) {
         arr[k] = rightArr[j];
         j++;
         k++;
     }
 }
 
-void bubble_sort(int start, int end)
-{
+void bubble_sort(int start, int end) {
     int i, j;
-    for (i = start; i <= end; i++)
-    {
-        for (j = start; j < end - i + start; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
+    for (i = start; i <= end; i++) {
+        for (j = start; j < end - i - start; j++) {
+            if (arr[j] > arr[j + 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -79,8 +66,7 @@ void bubble_sort(int start, int end)
     }
 }
 
-int main()
-{
+int main() {
     srand(time(NULL));
 
     printf("Before sorting:\n");
@@ -88,8 +74,7 @@ int main()
     generate_random_array(arr, SIZE);
 
     int i;
-    for (i = 0; i < SIZE; i++)
-    {
+    for (i = 0; i < SIZE; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
@@ -99,20 +84,20 @@ int main()
 
     start_time = clock();
 
-#pragma omp parallel num_threads(4)
+    #pragma omp parallel num_threads(4)
     {
-#pragma omp sections
+        #pragma omp sections
         {
-#pragma omp section
+            #pragma omp section
             bubble_sort(0, SIZE / 4 - 1);
 
-#pragma omp section
+            #pragma omp section
             bubble_sort(SIZE / 4, SIZE / 2 - 1);
 
-#pragma omp section
+            #pragma omp section
             bubble_sort(SIZE / 2, 3 * SIZE / 4 - 1);
 
-#pragma omp section
+            #pragma omp section
             bubble_sort(3 * SIZE / 4, SIZE - 1);
         }
     }
@@ -126,8 +111,7 @@ int main()
     final_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
 
     printf("After sorting:\n");
-    for (i = 0; i < SIZE; i++)
-    {
+    for (i = 0; i < SIZE; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
@@ -135,3 +119,4 @@ int main()
 
     return 0;
 }
+

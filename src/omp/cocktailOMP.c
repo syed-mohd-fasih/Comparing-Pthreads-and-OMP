@@ -4,25 +4,28 @@
 #include <stdlib.h>
 #include <omp.h>
 
+#define SIZE 5
+
 void Cocktail_Sort(int *A, int size)
 {
     int start = 0, end = size - 1;
-    int swap = 1;
+    int swap;
     int counter = 0;
-    
     while (counter != size / 2 + 1)
     {
+        swap = 0;
 #pragma omp parallel sections num_threads(2)
         {
 #pragma omp section
             {
 #pragma omp parallel for shared(A, swap, start)
-                for (int i = start; i < size / 2; i += 2)
+                for (int i = start; i < end; i += 2)
                 {
-                    if (*(A + i) > *(A + (i + 1))){
-                        int temp = *(A + i);
-                        *(A + i) = *(A + (i + 1));
-                        *(A + (i + 1)) = temp;
+                    if (A[i] > A[i + 1])
+                    {
+                        int temp = A[i];
+                        A[i] = A[i + 1];
+                        A[i + 1] = temp;
                         swap = 1;
                     }
                 }
@@ -30,18 +33,24 @@ void Cocktail_Sort(int *A, int size)
 #pragma omp section
             {
 #pragma omp parallel for shared(A, swap)
-                for (int j = end; j > (size / 2 + 1); j -= 2)
+                for (int j = end; j > start; j -= 2)
                 {
-                    if (*(A + j) < *(A + (j - 1)))
+                    if (A[j] < A[j - 1])
                     {
-                        int temp = *(A + j);
-                        *(A + (j)) = *(A + (j - 1));
-                        *(A + (j - 1)) = temp;
+                        int temp = A[j];
+                        A[j] = A[j - 1];
+                        A[j - 1] = temp;
                         swap = 1;
                     }
                 }
             }
         }
+
+        if (!swap)
+        {
+            break;
+        }
+
         (start == 0) ? start++ : start--;
         (end == size - 1) ? end-- : end++;
         counter++;
@@ -52,7 +61,6 @@ int *merge(int *P, int n)
 {
     int *FP = (int *)calloc(n, sizeof(int));
     int i = 0, j = n / 2 + 1, k = 0;
-
     for (; i <= n / 2; k++)
     {
         if (P[i] < P[j] || j >= n)
@@ -69,29 +77,21 @@ int *merge(int *P, int n)
             }
         }
     }
-
     while (j < n)
     {
         FP[k] = P[j];
         j++;
         k++;
     }
-
     return FP;
 }
 
 int main(void)
 {
     srand(time(NULL));
-    
-    int n;
+    int n = SIZE;
     struct timeval stop, start;
-    
-    printf("Enter The Size of Array: ");
-    scanf("%d", &n);
-    
     int *ptr = (int *)calloc(n, sizeof(int));
-    
     printf("Original Array: ");
     for (int i = 0; i < n; i++)
     {
@@ -102,10 +102,9 @@ int main(void)
 
     clock_t startTime = clock();
     gettimeofday(&start, NULL);
-    
     Cocktail_Sort(ptr, n);
-    int *fp = merge(ptr, n);
 
+    int *fp = merge(ptr, n);
     gettimeofday(&stop, NULL);
     clock_t endTime = clock();
 
