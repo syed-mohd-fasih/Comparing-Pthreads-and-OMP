@@ -76,28 +76,28 @@ sorting-algorithms-comparison/
 
 ### Bubble Sort
 
-- **Pthreads Implementation**: `src/bubble_sort_pthreads.c`
-- **OpenMP Implementation**: `src/bubble_sort_omp.c`
+- **Pthreads Implementation**: `src/pthreads/bubble_sort_pthreads.c`
+- **OpenMP Implementation**: `src/omp/bubble_sort_omp.c`
 
 ### Selection Sort
 
-- **Pthreads Implementation**: `src/selection_sort_pthreads.c`
-- **OpenMP Implementation**: `src/selection_sort_omp.c`
+- **Pthreads Implementation**: `src/pthreads/selection_sort_pthreads.c`
+- **OpenMP Implementation**: `src/omp/selection_sort_omp.c`
 
 ### Merge Sort
 
-- **Pthreads Implementation**: `src/merge_sort_pthreads.c`
-- **OpenMP Implementation**: `src/merge_sort_omp.c`
+- **Pthreads Implementation**: `src/pthreads/merge_sort_pthreads.c`
+- **OpenMP Implementation**: `src/omp/merge_sort_omp.c`
 
 ### Binary Insertion Sort
 
-- **Pthreads Implementation**: `src/binary_insertion_sort_pthreads.c`
-- **OpenMP Implementation**: `src/binary_insertion_sort_omp.c`
+- **Pthreads Implementation**: `src/pthreads/binary_insertion_sort_pthreads.c`
+- **OpenMP Implementation**: `src/omp/binary_insertion_sort_omp.c`
 
 ### Cocktail Sort
 
-- **Pthreads Implementation**: `src/cocktail_sort_pthreads.c`
-- **OpenMP Implementation**: `src/cocktail_sort_omp.c`
+- **Pthreads Implementation**: `src/pthreads/cocktail_sort_pthreads.c`
+- **OpenMP Implementation**: `src/omp/cocktail_sort_omp.c`
 
 ## Running the Code
 ### Executing the Programs
