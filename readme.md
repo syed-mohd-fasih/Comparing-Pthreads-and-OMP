@@ -42,8 +42,8 @@ Parallel computing is essential for improving the performance of computationally
 
 2. Clone this repository to your local machine:
     ```sh
-    git clone https://github.com/your-repo/sorting-algorithms-comparison.git
-    cd sorting-algorithms-comparison
+    git clone https://github.com/syed-mohd-fasih/Comparing-Pthreads-and-OMP.git
+    cd Comparing-Pthreads-and-OMP
     ```
 
 ## Code Structure
@@ -54,17 +54,21 @@ The project directory is structured as follows:
 sorting-algorithms-comparison/
 │
 ├── src/
-│   ├── bubble_sort_pthreads.c
-│   ├── bubble_sort_omp.c
-│   ├── selection_sort_pthreads.c
-│   ├── selection_sort_omp.c
-│   ├── merge_sort_pthreads.c
-│   ├── merge_sort_omp.c
-│   ├── binary_insertion_sort_pthreads.c
-│   ├── binary_insertion_sort_omp.c
-│   ├── cocktail_sort_pthreads.c
-│   ├── cocktail_sort_omp.c
+|   ├── main.c
+|   ├── omp/
+│   |   ├── bubble_sort_omp.c
+│   |   ├── selection_sort_omp.c
+|   │   ├── merge_sort_omp.c
+|   │   ├── binary_insertion_sort_omp.c
+|   │   ├── cocktail_sort_omp.c
+|   ├── pthreads/
+|   │   ├── bubble_sort_pthreads.c
+|   │   ├── selection_sort_pthreads.c
+|   │   ├── merge_sort_pthreads.c
+|   │   ├── binary_insertion_sort_pthreads.c
+|   │   ├── cocktail_sort_pthreads.c
 │
+├── makefile
 ├── README.md
 ```
 
@@ -98,14 +102,19 @@ sorting-algorithms-comparison/
 ## Running the Code
 ### Executing the Programs
 
-Each sorting algorithm can be executed separately. Here are examples of how to run the Pthreads and OpenMP implementations of Bubble Sort:
+Compile the project using makefile:
 
 ```sh
-./bubble_sort_pthreads
-./bubble_sort_omp
+make
 ```
 
-Repeat the process for other sorting algorithms by replacing `bubble_sort` with the desired algorithm name.
+The makefile will create a directory `bin/` within which all sorting algorithms will be placed within their respective dir, i.e, `bin/omp/` and `bin/pthreads/` with the addition of the main program compiled as `bin/comparing_omp_and_pthreads`
+
+Use the main program to control the project and its output:
+
+```sh
+./bin/comparing_omp_and_pthreads
+```
 
 ## Conclusion
 
