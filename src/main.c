@@ -6,6 +6,21 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+enum boolean
+{
+    FALSE,
+    TRUE
+};
+
+struct Flags
+{
+    enum boolean execute_omp,
+        execute_pthreads,
+        execute_omp_and_pthreads,
+        output_generated,
+        program_exit,
+        gui;
+} flags;
 
 // Checks if a specified directory exists or not
 int directory_exists(const char *path) {
@@ -147,21 +162,21 @@ int menu()
     }
 }
 
-enum boolean
-{
-    FALSE,
-    TRUE
-};
+void project_settings() {
 
-struct Flags
-{
-    enum boolean execute_omp,
-        execute_pthreads,
-        execute_omp_and_pthreads,
-        output_generated,
-        program_exit,
-        gui;
-} flags;
+}
+
+void project_about() {
+
+}
+
+void project_stats() {
+
+}
+
+int init_gui() {
+    return 0;
+}
 
 int main()
 {
@@ -209,16 +224,22 @@ int main()
                     printf("Something went wrong");
                 break;
             case 4:
+                prepare_analysis();
                 break;
             case 5:
+                project_settings();
                 break;
             case 6:
+                project_about();
                 break;
             case 7:
+                project_stats();
                 break;
             case 8:
+                if(init_gui() == 0);
                 break;
             case 9:
+                flags.program_exit = TRUE;
                 break;
             default:
         }
